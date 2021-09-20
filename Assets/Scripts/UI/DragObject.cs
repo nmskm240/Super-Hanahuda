@@ -12,6 +12,9 @@ namespace  SuperHanahuda.UI
         private CanvasGroup _canvasGroup;
         private Vector3 _moveBeforePos;
 
+        public string TargetTag { get { return _targetTag; } }
+        public Transform Parent { get; set; }
+
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
@@ -20,6 +23,7 @@ namespace  SuperHanahuda.UI
         public void OnBeginDrag(PointerEventData e)
         {
             _canvasGroup.blocksRaycasts = false;
+            Parent = transform.parent;
             _moveBeforePos = transform.position;
         }
 
@@ -30,11 +34,9 @@ namespace  SuperHanahuda.UI
 
         public void OnEndDrag(PointerEventData e)
         {
-            if(e.hovered.Where(i => i.CompareTag(_targetTag)).Count() > 0) 
-            {
-                _canvasGroup.blocksRaycasts = true;
-            }
-            else 
+            _canvasGroup.blocksRaycasts = true;
+            transform.SetParent(Parent);
+            if(e.hovered.Where(i => i.CompareTag(_targetTag)).Count() <= 0) 
             {
                 transform.position = _moveBeforePos;
             }
