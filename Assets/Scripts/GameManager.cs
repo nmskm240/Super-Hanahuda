@@ -21,18 +21,21 @@ public class GameManager : MonoBehaviour
             {
                 var card = _deck.Draw();
                 card.transform.SetParent(_playerHand);
+                card.transform.localScale = Vector3.one * 1.2f;
                 card.GetComponent<CardController>().View.ToggleFace();
             }
             for (int j = 0; j < 2; j++)
             {
                 var card = _deck.Draw();
                 card.transform.SetParent(_field);
+                card.transform.localScale = Vector3.one;
                 card.GetComponent<CardController>().View.ToggleFace();
             }
             for (int j = 0; j < 2; j++)
             {
                 var card = _deck.Draw();
                 card.transform.SetParent(_enemyHand);
+                card.transform.localScale = Vector3.one * 1.2f;
             }
         }
     }
