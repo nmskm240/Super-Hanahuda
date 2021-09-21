@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 340892779}
   - component: {fileID: 340892778}
   - component: {fileID: 340892780}
+  - component: {fileID: 340892781}
   m_Layer: 5
   m_Name: Field
   m_TagString: Field
@@ -234,6 +235,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c21447aafc32f849a112332cd91fb14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onDropComplite:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 340892781}
+        m_TargetAssemblyTypeName: SuperHanahuda.Game.Field, Assembly-CSharp
+        m_MethodName: PutCard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &340892781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340892775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935d87f76f570a64099e523903f0d9e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &401843610

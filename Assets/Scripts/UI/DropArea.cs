@@ -1,17 +1,13 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 namespace SuperHanahuda.UI
 {    
-    public class DropArea : MonoBehaviour, IDropHandler 
+    public class DropArea : MonoBehaviour 
     {
-        public void OnDrop(PointerEventData e)
-        {
-            var obj = e.pointerDrag.GetComponent<DragObject>();
-            if(obj != null || gameObject.CompareTag(obj.TargetTag)) 
-            {
-                obj.Parent = transform;
-            }
-        }
+        [SerializeField]
+        private UnityEvent<GameObject> _onDropComplite;
+
+        public UnityEvent<GameObject> OnDropComplite { get { return _onDropComplite; } }
     }
 }

@@ -97,6 +97,21 @@ MonoBehaviour:
     _back: {fileID: -3057900280023603589, guid: 312a8462ef9ef58408e1fba8d0f7493b,
       type: 3}
     _image: {fileID: 1376618318967650227}
+  _onPlay:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2946203070729519051}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8791086680494775373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +159,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTag: Field
+  _onBeginDrag:
+    m_PersistentCalls:
+      m_Calls: []
+  _onEndDrag:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!225 &4066323385426028606
 CanvasGroup:
   m_ObjectHideFlags: 0
