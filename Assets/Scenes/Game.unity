@@ -123,6 +123,160 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &241210156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 241210158}
+  - component: {fileID: 241210157}
+  m_Layer: 0
+  m_Name: TurnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &241210157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241210156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b30f62117747e64b9c58ebab9950104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _battleStandbyPhases:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  - id: 5
+  - id: 6
+  - id: 7
+  - id: 8
+  - id: 9
+  - id: 10
+  - id: 11
+  references:
+    version: 1
+    00000000:
+      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
+      data:
+        _place: {fileID: 1376978156}
+        _size: 2
+        _scale: 1.2
+        _isMovable: 1
+        _isToggleFace: 1
+    00000001:
+      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
+      data:
+        _place: {fileID: 340892776}
+        _size: 2
+        _scale: 1
+        _isMovable: 0
+        _isToggleFace: 1
+    00000002:
+      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
+      data:
+        _place: {fileID: 1332336348}
+        _size: 2
+        _scale: 1.2
+        _isMovable: 0
+        _isToggleFace: 0
+    00000003:
+      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
+      data:
+        _place: {fileID: 1376978156}
+        _size: 2
+        _scale: 1.2
+        _isMovable: 1
+        _isToggleFace: 1
+    00000004:
+      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
+      data:
+        _place: {fileID: 340892776}
+        _size: 2
+        _scale: 1
+        _isMovable: 0
+        _isToggleFace: 1
+    00000005:
+      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
+      data:
+        _place: {fileID: 1332336348}
+        _size: 2
+        _scale: 1.2
+        _isMovable: 0
+        _isToggleFace: 0
+    00000006:
+      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
+      data:
+        _place: {fileID: 1376978156}
+        _size: 2
+        _scale: 1.2
+        _isMovable: 1
+        _isToggleFace: 1
+    00000007:
+      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
+      data:
+        _place: {fileID: 340892776}
+        _size: 2
+        _scale: 1
+        _isMovable: 0
+        _isToggleFace: 1
+    00000008:
+      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
+      data:
+        _place: {fileID: 1332336348}
+        _size: 2
+        _scale: 1.2
+        _isMovable: 0
+        _isToggleFace: 0
+    00000009:
+      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
+      data:
+        _place: {fileID: 1376978156}
+        _size: 2
+        _scale: 1.2
+        _isMovable: 1
+        _isToggleFace: 1
+    0000000A:
+      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
+      data:
+        _place: {fileID: 340892776}
+        _size: 2
+        _scale: 1
+        _isMovable: 0
+        _isToggleFace: 1
+    0000000B:
+      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
+      data:
+        _place: {fileID: 1332336348}
+        _size: 2
+        _scale: 1.2
+        _isMovable: 0
+        _isToggleFace: 0
+--- !u!4 &241210158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241210156}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 234.18546, y: 326.3107, z: -353.61362}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &340892775
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,10 +786,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732dc92cc9984df48939b544ec41333d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deck: {fileID: 708775871}
-  _enemyHand: {fileID: 1332336348}
-  _field: {fileID: 340892776}
-  _playerHand: {fileID: 1376978156}
 --- !u!4 &1754385907
 Transform:
   m_ObjectHideFlags: 0
