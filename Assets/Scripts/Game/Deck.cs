@@ -6,7 +6,7 @@ using SuperHanahuda.Utils;
 
 namespace SuperHanahuda.Game
 {
-    public class Deck : MonoBehaviour
+    public class Deck : SingletonMonoBehaviour<Deck>
     {
         [SerializeField]
         private Factory<GameObject> _factory;
