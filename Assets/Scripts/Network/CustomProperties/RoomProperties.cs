@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections.Generic;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using Photon.Pun;
@@ -8,18 +9,28 @@ namespace SuperHanahuda.Network.CustomProperty
 {
     public static class RoomProperties
     {
-        private static readonly string _deck = "deck"; 
+        public static readonly string DeckPropKey = "deck";
 
         private static readonly Hashtable _hashtable = new Hashtable();
 
-        public static void SetDeck(this Room room, IEnumerable<CardModel> cards)
+        public static void SetDeck(this Room room, Deck deck)
         {
-            _hashtable[_deck] = cards;
+            _hashtable[DeckPropKey] = deck.Cards.ToArray();
         }
 
-        public static List<CardModel> GetDeck(this Room room)
+        public static Deck GetDeck(this Room room)
         {
-            return room.CustomProperties[_deck] is IEnumerable<CardModel> cards ? new List<CardModel>(cards) : new List<CardModel>();
+            var cards = room.CustomProperties[DeckPropKey] as IEnumerable<CardModel>;
+            return new Deck(cards);
+        }
+
+        public static void SetRoomProperties(this Room room)
+        {
+            if (_hashtable.Count > 0)
+            {
+                room.SetCustomProperties(_hashtable);
+                _hashtable.Clear();
+            }
         }
     }
 }

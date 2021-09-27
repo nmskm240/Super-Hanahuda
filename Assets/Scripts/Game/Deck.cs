@@ -6,14 +6,31 @@ using SuperHanahuda.Utils;
 
 namespace SuperHanahuda.Game
 {
-    public class Deck : SingletonMonoBehaviour<Deck>
+    public class Deck
     {
-        [SerializeField]
         private Factory<GameObject> _factory;
-        [SerializeField]
         private List<CardModel> _cards;
 
-        public void Shuffle() 
+        public IEnumerable<CardModel> Cards { get { return _cards; } }
+
+        public Deck()
+        {
+            _factory = new NetworkFactory(Resources.Load("Prefabs/Card") as GameObject);
+            _cards = new List<CardModel>();
+            for (int i = 1; i <= 48; i++)
+            {
+                var card = Resources.Load($"Datas/Cards/{ i }") as CardModel;
+                _cards.Add(card);
+            }
+        }
+
+        public Deck(IEnumerable<CardModel> cards)
+        {
+            _factory = new NetworkFactory(Resources.Load("Prefabs/Card") as GameObject);
+            _cards = new List<CardModel>(cards);
+        }
+
+        public void Shuffle()
         {
             _cards = _cards.OrderBy(item => Guid.NewGuid()).ToList();
         }
