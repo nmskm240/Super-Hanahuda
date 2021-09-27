@@ -1,19 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using SuperHanahuda.Network.CustomProperty;
 
 namespace SuperHanahuda.Game.TurnSystem
 {
     public class TurnManager : MonoBehaviour
     {
         [SerializeReference, SubclassSelector]
-        private List<ITurn> _battleStandbyPhases;
+        private List<ITurn> _setupPhases;
 
         private void Start()
         {
-            Deck.Instance.Shuffle();
-            foreach (var turn in _battleStandbyPhases)
+            var deck = PhotonNetwork.CurrentRoom.GetDeck();
+            foreach (var turn in _setupPhases)
             {
-                turn.Execute();
+                turn.Execute(deck);
             }
         }
     }

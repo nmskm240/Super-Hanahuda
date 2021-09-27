@@ -1,4 +1,6 @@
 using UnityEngine;
+using Photon.Pun;
+using SuperHanahuda.Network.CustomProperty;
 using SuperHanahuda.UI;
 
 namespace SuperHanahuda.Game.TurnSystem
@@ -16,17 +18,20 @@ namespace SuperHanahuda.Game.TurnSystem
         [SerializeField]
         private bool _isToggleFace;
 
-        public void Execute()
+        public void Execute(object obj)
         {
-            for (int i = 0; i < _size; i++)
+            if (obj is Deck deck)
             {
-                var card = Deck.Instance.Draw();
-                card.transform.SetParent(_place);
-                card.transform.localScale = Vector3.one * _scale;
-                card.GetComponent<DragObject>().enabled = _isMovable;
-                if (_isToggleFace)
+                for (int i = 0; i < _size; i++)
                 {
-                    card.GetComponent<CardController>().View.ToggleFace();
+                    var card = deck.Draw();
+                    card.transform.SetParent(_place);
+                    card.transform.localScale = Vector3.one * _scale;
+                    card.GetComponent<DragObject>().enabled = _isMovable;
+                    if (_isToggleFace)
+                    {
+                        card.GetComponent<CardController>().View.ToggleFace();
+                    }
                 }
             }
         }
