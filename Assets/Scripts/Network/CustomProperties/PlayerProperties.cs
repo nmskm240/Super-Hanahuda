@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Hashtable = ExitGames.Client.Photon.Hahstable;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 using Photon.Pun;
 using Photon.Realtime;
 using SuperHanahuda.Game;
