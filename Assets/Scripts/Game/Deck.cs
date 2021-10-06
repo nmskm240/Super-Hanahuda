@@ -8,14 +8,12 @@ namespace SuperHanahuda.Game
 {
     public class Deck
     {
-        private Factory<GameObject> _factory;
         private List<CardModel> _cards;
 
         public IEnumerable<CardModel> Cards { get { return _cards; } }
 
         public Deck()
         {
-            _factory = new NetworkFactory(Resources.Load("Prefabs/Card") as GameObject);
             _cards = new List<CardModel>();
             for (int i = 1; i <= 48; i++)
             {
@@ -26,7 +24,6 @@ namespace SuperHanahuda.Game
 
         public Deck(IEnumerable<CardModel> cards)
         {
-            _factory = new NetworkFactory(Resources.Load("Prefabs/Card") as GameObject);
             _cards = new List<CardModel>(cards);
         }
 
@@ -35,13 +32,11 @@ namespace SuperHanahuda.Game
             _cards = _cards.OrderBy(item => Guid.NewGuid()).ToList();
         }
 
-        public GameObject Draw()
+        public List<CardModel> Draw(int num)
         {
-            var obj = _factory.Create();
-            var card = _cards.First();
-            _cards.Remove(card);
-            obj.GetComponent<CardController>().Init(card);
-            return obj;
+            var cards = _cards.GetRange(0, num);
+            _cards.RemoveRange(0, num);
+            return cards;
         }
     }
 }

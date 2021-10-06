@@ -152,18 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b30f62117747e64b9c58ebab9950104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _setupPhases:
-  - id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: DealCard, ns: SuperHanahuda.Game.TurnSystem, asm: Assembly-CSharp}
-      data:
-        _place: {fileID: 0}
-        _size: 0
-        _scale: 0
-        _isMovable: 0
-        _isToggleFace: 0
+  _battleSetupPhase:
+    _factory:
+      _original: {fileID: 4319563635852022910, guid: 1cbc1603097dab140846fa52e4d085a0,
+        type: 3}
+    _steps: []
 --- !u!4 &241210158
 Transform:
   m_ObjectHideFlags: 0
@@ -662,6 +655,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767997528236688949, guid: 183ca08a5e5555a4b9b2f7ee81368ab5,
+        type: 3}
+      propertyPath: _isLocalPlayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4423879877853899299, guid: 183ca08a5e5555a4b9b2f7ee81368ab5,
         type: 3}

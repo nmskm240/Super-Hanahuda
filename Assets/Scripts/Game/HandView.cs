@@ -1,22 +1,14 @@
 using UnityEngine;
+
 using SuperHanahuda.UI;
 
 namespace SuperHanahuda.Game
 {
-    [RequireComponent(typeof(CircleLayoutGroup))]
-    public class HandView : MonoBehaviour
+    [System.Serializable]
+    public class HandView
     {
+        [SerializeField]
         private CircleLayoutGroup _circleLayout;
-
-        private void Awake()
-        {
-            _circleLayout = GetComponent<CircleLayoutGroup>();
-        }
-
-        private void OnTransformChildrenChanged()
-        {
-            LayoutUpdate(transform.childCount);
-        }
 
         public void LayoutUpdate(int childCount)
         {
@@ -25,5 +17,6 @@ namespace SuperHanahuda.Game
             _circleLayout.SetLayoutHorizontal();
             _circleLayout.SetLayoutVertical();
         }
+
     }
 }

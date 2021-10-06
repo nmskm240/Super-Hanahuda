@@ -5,13 +5,25 @@ using Photon.Pun;
 using Photon.Realtime;
 using SuperHanahuda.Game;
 
-namespace SuperHanahuda.Network.CustomProperty
+namespace SuperHanahuda.Network.CustomProperties
 {
     public static class RoomProperties
     {
+        public static readonly string EnemyPropKey = "enemy";
         public static readonly string DeckPropKey = "deck";
 
         private static readonly Hashtable _hashtable = new Hashtable();
+
+        public static void SetEnemy(this Room room, Player enemy) 
+        {
+            _hashtable[EnemyPropKey] = enemy;
+        }
+
+        public static Player GetEnemy(this Room room) 
+        {
+            UnityEngine.Debug.Log(room.CustomProperties[EnemyPropKey]);
+            return room.CustomProperties[EnemyPropKey] as Player;
+        }
 
         public static void SetDeck(this Room room, Deck deck)
         {

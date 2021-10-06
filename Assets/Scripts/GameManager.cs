@@ -5,7 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using SuperHanahuda.Game;
 using SuperHanahuda.Network;
-using SuperHanahuda.Network.CustomProperty;
+using SuperHanahuda.Network.CustomProperties;
 using MultiSceneManagement;
 
 public class GameManager : MonoBehaviourPunCallbacks
@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         CustomType.Register();
         MultiSceneManager.Init();
+        PhotonNetwork.OfflineMode = true;
         PhotonNetwork.ConnectUsingSettings();
     }
 
