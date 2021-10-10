@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Field
   - Card
+  - DropArea
   layers:
   - Default
   - TransparentFX
