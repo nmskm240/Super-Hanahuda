@@ -14,11 +14,21 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         CustomType.Register();
         MultiSceneManager.Init();
-        PhotonNetwork.OfflineMode = true;
         PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.IsMessageQueueRunning = false;
+        MultiSceneManager.LoadScene("Game");
+    }
+
+    public override void OnJoinRandomFailed(short code, string message)
     {
         var roomProp = new RoomOptions()
         {
@@ -28,10 +38,5 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         };
         PhotonNetwork.JoinOrCreateRoom(Random.Range(1000, 10000).ToString(), roomProp, null);
-    }
-
-    public override void OnJoinedRoom()
-    {
-        MultiSceneManager.LoadScene("Game");
     }
 }

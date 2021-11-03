@@ -13,6 +13,7 @@ namespace SuperHanahuda.Game.TurnSystem
 
         private void Start()
         {
+            PhotonNetwork.IsMessageQueueRunning = true;
             if (PhotonNetwork.IsMasterClient)
             {
                 _battleSetupPhase.Execute();
