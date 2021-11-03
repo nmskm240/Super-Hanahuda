@@ -14,11 +14,13 @@ namespace SuperHanahuda.UI
         [Range(0f, 360f)]
         public float EffectiveAngle = 0f;
 
+#if UNITY_EDITOR
         protected override void OnValidate()
         {
             base.OnValidate();
             CalChildPos();
         }
+#endif
 
         public void SetLayoutHorizontal() { }
         public void SetLayoutVertical()

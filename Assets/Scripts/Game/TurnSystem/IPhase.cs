@@ -1,6 +1,6 @@
 namespace SuperHanahuda.Game.TurnSystem
 {
-    public interface ITurn
+    public interface IPhase
     {
         void Execute();
     }

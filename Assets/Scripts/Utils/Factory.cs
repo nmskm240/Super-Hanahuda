@@ -3,14 +3,16 @@ using UnityEngine;
 namespace SuperHanahuda.Utils
 {
     [System.Serializable]
-    public class Factory<T> where T : Object
+    public abstract class Factory<T> where T : Object
     {
         [SerializeField]
-        private T _original;
+        protected T _original;
 
-        public T Create()
+        public Factory(T original)
         {
-            return Object.Instantiate(_original);
+            _original = original;
         }
+
+        public abstract T Create();
     }
 }

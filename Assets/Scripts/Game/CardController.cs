@@ -20,5 +20,10 @@ namespace SuperHanahuda.Game
             _model = model;
             _view.Init(model.Image);
         }
+
+        private void OnTransformParentChanged()
+        {
+            transform.localScale = Vector3.one;
+        }
     }
 }

@@ -16,19 +16,19 @@ namespace MultiSceneManagement
 
         private static Scene GetSceneOfSameCategoryInHierarchy(SceneData sceneData)
         {
-            if(sceneData == null || string.IsNullOrEmpty(sceneData.Category))
+            if (sceneData == null || string.IsNullOrEmpty(sceneData.Category))
             {
                 return new Scene();
             }
-            for(int i = 0; i < SceneManager.sceneCount; i++)
+            for (int i = 0; i < SceneManager.sceneCount; i++)
             {
                 var scene = SceneManager.GetSceneAt(i);
                 var data = _sceneTable.GetSceneData(scene.name);
-                if(scene.name == sceneData.Name || data == null || string.IsNullOrEmpty(data.Category))
+                if (scene.name == sceneData.Name || data == null || string.IsNullOrEmpty(data.Category))
                 {
                     continue;
                 }
-                if(data.Category == sceneData.Category)
+                if (data.Category == sceneData.Category)
                 {
                     return scene;
                 }
@@ -38,47 +38,52 @@ namespace MultiSceneManagement
 
         private static IEnumerator LoadScene(SceneData sceneData)
         {
-            if(sceneData == null)
+            if (sceneData == null)
             {
                 throw new System.ArgumentNullException("sceneData");
             }
             var parentName = sceneData.ParentName;
-            if(!string.IsNullOrEmpty(parentName))
+            if (!string.IsNullOrEmpty(parentName))
             {
                 var parentScene = SceneManager.GetSceneByName(parentName);
-                if(!parentScene.IsValid())
+                if (!parentScene.IsValid())
                 {
                     var parentSceneData = _sceneTable.GetSceneData(parentName);
-                    if(parentSceneData == null)
+                    if (parentSceneData == null)
                     {
                         Debug.LogError("Unknown SceneData");
                     }
                     yield return LoadScene(parentSceneData);
                     var sceneOfSomeCategory = GetSceneOfSameCategoryInHierarchy(parentSceneData);
-                    if(sceneOfSomeCategory.IsValid())
+                    if (sceneOfSomeCategory.IsValid())
                     {
                         yield return UnloadScene(sceneOfSomeCategory);
                     }
                 }
             }
             yield return SceneManager.LoadSceneAsync(sceneData.Name, LoadSceneMode.Additive);
+            var scene = SceneManager.GetSceneByName(sceneData.Name);
+            if (scene.IsValid())
+            {
+                SceneManager.SetActiveScene(scene);
+            }
         }
 
         private static IEnumerator LoadSceneProcess(string sceneName, Action onLoaded = null)
         {
             var sceneData = _sceneTable.GetSceneData(sceneName);
-            if(sceneData == null)
+            if (sceneData == null)
             {
                 Debug.LogError("Unknown SceneData");
                 yield break;
             }
-            if(SceneManager.GetSceneByName(sceneName).IsValid())
+            if (SceneManager.GetSceneByName(sceneName).IsValid())
             {
                 Debug.LogWarning("Has already been loaded");
                 yield break;
             }
             var sceneOfSomeCategory = GetSceneOfSameCategoryInHierarchy(sceneData);
-            if(sceneOfSomeCategory.IsValid())
+            if (sceneOfSomeCategory.IsValid())
             {
                 yield return UnloadScene(sceneOfSomeCategory);
             }
@@ -89,38 +94,38 @@ namespace MultiSceneManagement
 
         private static IEnumerator UnloadScene(Scene scene)
         {
-            if(!scene.IsValid())
+            if (!scene.IsValid())
             {
                 throw new System.ArgumentException("scene");
             }
             var children = _sceneTable.GetChildScenes(scene.name);
-            if(children != null)
+            if (children != null)
             {
-                foreach(var child in children)
+                foreach (var child in children)
                 {
                     var childScene = SceneManager.GetSceneByName(child.Name);
-                    if(childScene.IsValid())
+                    if (childScene.IsValid())
                     {
                         yield return UnloadScene(childScene);
                     }
                 }
-            } 
+            }
             yield return SceneManager.UnloadSceneAsync(scene);
         }
 
         private static IEnumerator UnloadSceneProcess(string sceneName, Action onUnloaded = null)
         {
-            if(!SceneManager.GetSceneByName(sceneName).IsValid())
+            if (!SceneManager.GetSceneByName(sceneName).IsValid())
             {
                 yield break;
             }
             var children = _sceneTable.GetChildScenes(sceneName);
-            if(children != null)
+            if (children != null)
             {
-                foreach(var child in children)
+                foreach (var child in children)
                 {
                     var childScene = SceneManager.GetSceneByName(child.Name);
-                    if(childScene.IsValid())
+                    if (childScene.IsValid())
                     {
                         yield return UnloadSceneProcess(childScene.name);
                     }
@@ -156,7 +161,7 @@ namespace MultiSceneManagement
         {
             foreach (var sceneData in _loadedSceneDatas)
             {
-                if(!string.IsNullOrEmpty(sceneData.ParentName))
+                if (!string.IsNullOrEmpty(sceneData.ParentName))
                 {
                     LoadScene(sceneData.ParentName);
                     break;

@@ -12,6 +12,7 @@ namespace SuperHanahuda.Game
         [SerializeField]
         private Sprite _image;
 
+        public int ID { get { return int.Parse(this.name); } }
         public CardType Type { get { return this._type; } }
         public int Month { get { return this._month; } }
         public Sprite Image { get { return this._image; } }
