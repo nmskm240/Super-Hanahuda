@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace SuperHanahuda.Game
 {
@@ -10,19 +9,19 @@ namespace SuperHanahuda.Game
         [SerializeField]
         private Sprite _back;
         [SerializeField]
-        private Image _image;
+        private SpriteRenderer _renderer;
 
-        public bool IsFace { get { return _image.sprite == _face; } }
+        public bool IsFace { get { return _renderer.sprite == _face; } }
 
         public void Init(Sprite face)
         {
             _face = face;
-            _image.sprite = _back;
+            _renderer.sprite = _back;
         }
 
         public void ToggleFace()
         {
-            _image.sprite = IsFace ? _back : _face;
+            _renderer.sprite = IsFace ? _back : _face;
         }
     }
 }

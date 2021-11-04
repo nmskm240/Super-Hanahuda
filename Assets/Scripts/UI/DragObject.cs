@@ -17,6 +17,8 @@ namespace SuperHanahuda.UI
         private UnityEvent _onBeginDrag;
         [SerializeField]
         private UnityEvent _onEndDrag;
+        private Transform _parent;
+        private int _index;
 
         private void Awake()
         {
@@ -26,40 +28,42 @@ namespace SuperHanahuda.UI
         public void OnBeginDrag(PointerEventData e)
         {
             _canvasGroup.blocksRaycasts = false;
+            _parent = transform.parent;
+            _index = transform.GetSiblingIndex();
             _moveBeforePos = transform.position;
             _moveBeforeRotate = transform.rotation;
             transform.localRotation = Quaternion.identity;
+            transform.parent = null;
             _onBeginDrag.Invoke();
         }
 
         public void OnDrag(PointerEventData e)
         {
-            transform.position = e.position;
+            var pos = Camera.main.ScreenToWorldPoint(e.position);
+            pos.z = 0;
+            transform.position = pos;
         }
 
         public void OnEndDrag(PointerEventData e)
         {
+            var worldPoint = Camera.main.ScreenToWorldPoint(e.position);
             _canvasGroup.blocksRaycasts = true;
-            if (e.hovered.Count() > 0)
+            _onEndDrag.Invoke();
+            foreach (var hit in Physics2D.RaycastAll(worldPoint, Vector2.zero))
             {
-                var dropPlace = e.hovered.First();
-                var dropArea = dropPlace.GetComponent<DropArea>();
-                if (dropPlace.CompareTag(_targetTag) && dropArea != null)
+                var obj = hit.collider.gameObject;
+                Debug.Log(obj.name);
+                var dropArea = obj.GetComponent<DropArea>();
+                if (obj.CompareTag(_targetTag) && dropArea != null)
                 {
                     dropArea.OnDropComplite.Invoke(gameObject);
-                }
-                else
-                {
-                    transform.position = _moveBeforePos;
-                    transform.rotation = _moveBeforeRotate;
+                    return;
                 }
             }
-            else
-            {
-                transform.position = _moveBeforePos;
-                transform.rotation = _moveBeforeRotate;
-            }
-            _onEndDrag.Invoke();
+            transform.parent = _parent;
+            transform.SetSiblingIndex(_index);
+            transform.position = _moveBeforePos;
+            transform.rotation = _moveBeforeRotate;
         }
     }
 }

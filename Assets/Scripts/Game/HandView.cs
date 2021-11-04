@@ -14,9 +14,6 @@ namespace SuperHanahuda.Game
         {
             _circleLayout.OffsetAngle = -30.5f * Mathf.Log(childCount) + 99.5f;
             _circleLayout.EffectiveAngle = childCount * 10 + 40;
-            _circleLayout.SetLayoutHorizontal();
-            _circleLayout.SetLayoutVertical();
         }
-
     }
 }
