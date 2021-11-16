@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -9,6 +10,8 @@ namespace SuperHanahuda.Network.CustomProperties
 {
     public static class PlayerProperties
     {
+        public static readonly string IS_PARENT_KEY = "p";
+
         private static readonly Hashtable _hashtable = new Hashtable();
 
         public static void SetPlayerProperties(this Player player)

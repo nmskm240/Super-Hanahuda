@@ -1,7 +1,7 @@
 namespace SuperHanahuda.Game.TurnSystem
 {
-    public interface IStep<T>
+    public interface IStep
     {
-        void Execute(T t);
+        void Execute();
     }
 }

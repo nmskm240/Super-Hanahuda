@@ -18,6 +18,10 @@ namespace SuperHanahuda.Game.TurnSystem
             {
                 _battleSetupPhase.Execute();
             }
+            else
+            {
+                Camera.main.transform.rotation = Quaternion.Euler(0, 0, 180);
+            }
         }
     }
 }

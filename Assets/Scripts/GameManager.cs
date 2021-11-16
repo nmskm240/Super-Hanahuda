@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             CustomRoomProperties = new Hashtable()
             {
-                { RoomProperties.DeckPropKey, new Deck().Cards.ToArray() },
+                { RoomProperties.DECK_KEY, new Deck().Cards.ToArray() },
             }
         };
         PhotonNetwork.JoinOrCreateRoom(Random.Range(1000, 10000).ToString(), roomProp, null);
