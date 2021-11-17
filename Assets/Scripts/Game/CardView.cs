@@ -1,9 +1,10 @@
 using UnityEngine;
+using Photon.Pun;
 
 namespace SuperHanahuda.Game
 {
     [System.Serializable]
-    public class CardView
+    public class CardView : MonoBehaviour
     {
         private Sprite _face;
         [SerializeField]
@@ -11,7 +12,7 @@ namespace SuperHanahuda.Game
         [SerializeField]
         private SpriteRenderer _renderer;
 
-        public bool IsFace { get { return _renderer.sprite == _face; } }
+        public bool IsFaceUp { get { return _renderer.sprite == _face; } }
 
         public void Init(Sprite face)
         {
@@ -19,9 +20,22 @@ namespace SuperHanahuda.Game
             _renderer.sprite = _back;
         }
 
+        [PunRPC]
         public void ToggleFace()
         {
-            _renderer.sprite = IsFace ? _back : _face;
+            _renderer.sprite = IsFaceUp ? _back : _face;
+        }
+
+        [PunRPC]
+        public void FaceUp()
+        {
+            _renderer.sprite = _face;
+        }
+
+        [PunRPC]
+        public void FaceDown()
+        {
+            _renderer.sprite = _back;
         }
     }
 }

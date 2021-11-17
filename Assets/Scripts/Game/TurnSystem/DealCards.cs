@@ -22,14 +22,26 @@ namespace SuperHanahuda.Game.TurnSystem
             {
                 _dealPoses.Reverse();
             }
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 foreach (var transform in _dealPoses)
                 {
                     foreach (var card in deck.Draw(2))
                     {
                         var obj = _factory.Create();
-                        obj.GetComponent<CardController>().Init(card);
+                        var photonView = obj.GetComponent<PhotonView>();
+                        var cardController = obj.GetComponent<CardController>();
+                        var cardView = obj.GetComponent<CardView>();
+                        photonView.RPC(nameof(cardController.Init), RpcTarget.AllViaServer, card);
+                        if (transform.gameObject.CompareTag("Hand"))
+                        {
+                            var player = transform.root.CompareTag("Player") ? PhotonNetwork.LocalPlayer : PhotonNetwork.PlayerListOthers[0];
+                            photonView.TransferOwnership(player);
+                        }
+                        else
+                        {
+                            photonView.RPC(nameof(cardView.FaceUp), RpcTarget.AllViaServer);
+                        }
                         obj.transform.SetParent(transform);
                     }
                 }

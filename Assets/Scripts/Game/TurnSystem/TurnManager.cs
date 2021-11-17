@@ -11,14 +11,21 @@ namespace SuperHanahuda.Game.TurnSystem
         [SerializeField]
         private BattleSetup _battleSetupPhase;
 
+        private void OnGUI()
+        {
+            if (GUI.Button(new Rect(0, 0, 100, 80), "battle setup"))
+            {
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    _battleSetupPhase.Execute();
+                }
+            }
+        }
+
         private void Start()
         {
             PhotonNetwork.IsMessageQueueRunning = true;
-            if (PhotonNetwork.IsMasterClient)
-            {
-                _battleSetupPhase.Execute();
-            }
-            else
+            if(!PhotonNetwork.IsMasterClient)
             {
                 Camera.main.transform.rotation = Quaternion.Euler(0, 0, 180);
             }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4384703205100496482}
   - component: {fileID: 1273350483169098158}
   - component: {fileID: 8304006193788548131}
+  - component: {fileID: -6353398590414532622}
   - component: {fileID: 2946203070729519051}
   - component: {fileID: 4066323385426028606}
   - component: {fileID: 2582693355757283946}
@@ -128,11 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9ee0cd41125f74a8a814e50e2ec4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _view:
-    _back: {fileID: -3057900280023603589, guid: 312a8462ef9ef58408e1fba8d0f7493b,
-      type: 3}
-    _renderer: {fileID: 4384703205100496482}
+  _view: {fileID: -6353398590414532622}
   _onPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  _onPlacedField:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2946203070729519051}
@@ -147,6 +148,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-6353398590414532622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319563635852022910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe8f7d4687d8374bb60793d34b98953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _back: {fileID: -3057900280023603589, guid: 312a8462ef9ef58408e1fba8d0f7493b, type: 3}
+  _renderer: {fileID: 4384703205100496482}
 --- !u!114 &2946203070729519051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +209,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 671867507723364364}

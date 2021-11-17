@@ -17,8 +17,6 @@ namespace SuperHanahuda.UI
         private UnityEvent _onBeginDrag;
         [SerializeField]
         private UnityEvent _onEndDrag;
-        private Transform _parent;
-        private int _index;
 
         private void Awake()
         {
@@ -28,12 +26,9 @@ namespace SuperHanahuda.UI
         public void OnBeginDrag(PointerEventData e)
         {
             _canvasGroup.blocksRaycasts = false;
-            _parent = transform.parent;
-            _index = transform.GetSiblingIndex();
             _moveBeforePos = transform.position;
             _moveBeforeRotate = transform.rotation;
             transform.localRotation = Quaternion.identity;
-            transform.parent = null;
             _onBeginDrag.Invoke();
         }
 
@@ -52,7 +47,6 @@ namespace SuperHanahuda.UI
             foreach (var hit in Physics2D.RaycastAll(worldPoint, Vector2.zero))
             {
                 var obj = hit.collider.gameObject;
-                Debug.Log(obj.name);
                 var dropArea = obj.GetComponent<DropArea>();
                 if (obj.CompareTag(_targetTag) && dropArea != null)
                 {
@@ -60,8 +54,6 @@ namespace SuperHanahuda.UI
                     return;
                 }
             }
-            transform.parent = _parent;
-            transform.SetSiblingIndex(_index);
             transform.position = _moveBeforePos;
             transform.rotation = _moveBeforeRotate;
         }
